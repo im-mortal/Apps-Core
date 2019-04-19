@@ -73,6 +73,7 @@
           - '{{path.stdout}}:{{path.stdout}}'
           - '/etc/localtime:/etc/localtime:ro'
           - '/mnt/unionfs:/unionfs'
+          - '/mnt/unionfs:/home/Plex'
 
     - name: 'Establish Key Variables'
       set_fact:
@@ -195,6 +196,9 @@
           - name: plexguide
             aliases:
               - plex
+        dns_servers:
+          - 8.8.8.8
+          - 8.8.4.4
         volumes: '{{default_volumes}}'
         devices: "{{ '/dev/dri:/dev/dri' if dev_dri.stat.exists == True | default(false) else omit }}"
         etc_hosts:
