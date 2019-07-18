@@ -51,9 +51,9 @@
       set_fact:
         pg_volumes:
           - '/etc/localtime:/etc/localtime:ro'
-          - '/opt/appdata/{{pgrole}}:/config'
           - '{{path.stdout}}:{{path.stdout}}'
           - '/mnt:/mnt'
+          - '/opt/appdata/{{pgrole}}:/config'
           - '/tmp:/tmp'
 
     - name: 'Setting PG ENV'
@@ -87,7 +87,7 @@
         path: '/opt/appdata/{{pgrole}}/nzbget.conf'
         state: present
         delay: 5
-        
+
     - name: 'Stopping {{pgrole}}'
       docker_container:
         name: '{{pgrole}}'

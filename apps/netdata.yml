@@ -33,6 +33,7 @@
     - name: 'Setting PG Volumes'
       set_fact:
         pg_volumes:
+          - '/etc/localtime:/etc/localtime:ro'
           - '/sys:/host/sys:ro'
           - '/proc:/host/proc:ro'
           - '/var/run/docker.sock:/var/run/docker.sock'
@@ -60,7 +61,7 @@
           - name: plexguide
             aliases:
               - '{{pgrole}}'
-        security_opts:    
+        security_opts:
           - apparmor:unconfined
         state: started
         labels: '{{pg_labels}}'
